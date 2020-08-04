@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ${spring.application.name}
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          # RocketMQ 服务器地址
+          namesrv-addr: 192.168.216.134:9876
+        bindings:
+          input: {consumer.orderly: true}
+      bindings:
+        EMAIL_OUTPUT: {destination: test-topic3, content-type: application/json}
+        # EMAIL_INPUT: {destination: test-topic3, content-type: text/plain, group: test-group3, consumer.maxAttempts: 1}

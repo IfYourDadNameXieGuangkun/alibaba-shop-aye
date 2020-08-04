@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        timeout: 100000
+        server-addr: 192.168.216.134:8848
+        file-extension: yaml
+        encode: UTF-8
+        namespace: 097fcb14-adfa-47be-ba34-c208c95768d1
+        group: email
+        prefix: shop-service-email
+        #        扩展配置 : 优先级中,n越大,优先级越高
+        ext-config[0]:
+          data-id: email-service-mq.yaml
+          refresh: true
+          group: msg
+
+
+
+
+
+
+
+
+
+
+
+
