@@ -1,9 +1,9 @@
 package com.aye.reg.test;
 
 
-import com.aye.commons.domain.user.TUser;
-import com.aye.commons.service.ITUserService;
+import com.aye.commons.domain.TUser;
 import com.aye.reg.RegServiceApplication;
+import com.aye.reg.service.ITUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;

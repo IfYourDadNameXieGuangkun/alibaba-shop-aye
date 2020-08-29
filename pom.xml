@@ -5,13 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>alibaba-shop-commons</module>
-        <module>alibaba-shop-commons-domain</module>
-        <module>alibaba-shop-commons-mapper</module>
-        <module>alibaba-shop-commons-service</module>
+<!--        <module>alibaba-shop-commons-domain</module>-->
+<!--        <module>alibaba-shop-commons-mapper</module>-->
+<!--        <module>alibaba-shop-commons-service</module>-->
         <module>alibaba-shop-code-generator</module>
 <!--        <module>alibaba-shop-external-skywalking</module>-->
         <module>alibaba-shop-service-reg</module>
         <module>alibaba-shop-service-email</module>
+        <module>alibaba-shop-service-product</module>
+        <!--        <module>alibaba-shop-service-provider-item</module>-->
+<!--        <module>alibaba-shop-api</module>-->
     </modules>
 
     <parent>
@@ -25,18 +28,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Alibaba-shop-aye</name>
-
-<!--    <modules>-->
-<!--        <module>alibaba-exam-provider</module>-->
-<!--        <module>alibaba-exam-consumer</module>-->
-<!--        <module>alibaba-exam-consumer-feign</module>-->
-<!--        <module>alibaba-exam-api</module>-->
-<!--        <module>alibaba-exam-gateway</module>-->
-<!--        <module>alibaba-exam-genetator</module>-->
-<!--        <module>alibaba-exam-job</module>-->
-<!--        <module>alibaba-exam-java8</module>-->
-<!--    </modules>-->
-
 
     <properties>
         <!-- Environment Settings -->

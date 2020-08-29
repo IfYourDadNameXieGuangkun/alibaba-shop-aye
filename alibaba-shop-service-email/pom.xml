@@ -71,6 +71,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <!-- Projects End -->
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <!-- 打包后文件名称：项目名-环境-版本 -->

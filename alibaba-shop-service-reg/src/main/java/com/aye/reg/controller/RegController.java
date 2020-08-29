@@ -1,11 +1,9 @@
 package com.aye.reg.controller;
 
-import com.aye.commons.service.ITUserService;
-import com.aye.commons.domain.user.TUser;
+import com.aye.commons.domain.TUser;
 import com.aye.commons.stream.StreamSource;
 import com.aye.commons.validator.BeanValidator;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
+import com.aye.reg.service.ITUserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Wrapper;
 import java.util.List;
 import java.util.Optional;
 

@@ -2,19 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>alibaba-shop-aye</artifactId>
         <groupId>com.sca</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-
-    <artifactId>alibaba-shop-service-reg</artifactId>
-    <packaging>jar</packaging>
-    <name>shop-service-reg[注册服务]</name>
+    <artifactId>alibaba-shop-service-product</artifactId>
 
     <dependencies>
+
         <!-- Spring Boot Begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,7 +50,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
         </dependency>
-        <!-- rocketMq End -->
 
         <!-- Projects Begin 内部项目依赖 -->
         <dependency>
@@ -62,7 +59,6 @@
         </dependency>
         <!-- Projects End -->
     </dependencies>
-
 
     <build>
         <!-- 打包后文件名称：项目名-环境-版本 -->
