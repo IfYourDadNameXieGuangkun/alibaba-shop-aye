@@ -13,11 +13,11 @@ public class CR<T> extends BaseResponse implements Serializable {
         super();
     }
 
-    public CR(T data, int code){
-        super(code);
-        this.data = data;
-        this.code = code;
-    }
+//    public CR(T data, int code){
+//        super(code);
+//        this.data = data;
+//        this.code = code;
+//    }
 
     public CR(T data) {
         super();

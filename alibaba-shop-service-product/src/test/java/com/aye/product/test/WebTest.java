@@ -43,7 +43,7 @@ public class WebTest {
     public void 根据sku查询商品() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/product/list/products/ZH110")
+                .get("/product/list/products/ZH110")
 //                .param("sku", title))
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType

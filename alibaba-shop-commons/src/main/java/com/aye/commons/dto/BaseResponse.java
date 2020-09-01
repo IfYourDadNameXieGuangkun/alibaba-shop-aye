@@ -1,12 +1,11 @@
 package com.aye.commons.dto;
 
+import com.aye.commons.ex.enums.CommonErrorEnum;
+import com.aye.commons.ex.enums.IErrorEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
-import static com.aye.commons.exception.BizErrorEnum.SUCCESS_CODE;
-
 
 public abstract class BaseResponse implements Serializable {
 
@@ -27,17 +26,19 @@ public abstract class BaseResponse implements Serializable {
     protected String message;
 
     public BaseResponse() {
-        this.timestamp = LocalDateTime.now();
-        this.code = SUCCESS_CODE.getCode();
-        this.message = SUCCESS_CODE.getMessage();
+//        this.timestamp = LocalDateTime.now();
+//        this.code = SUCCESS.getCode();
+//        this.message = SUCCESS.getMessage();
+        this(CommonErrorEnum.SUCCESS);
     }
 
-    public BaseResponse(int code) {
-        this.timestamp = LocalDateTime.now();
-        this.code = code;
-        if(code != 0){
-            this.message = "failed";
-        }
+    public BaseResponse(IErrorEnum errorEnum) {
+//        this.timestamp = LocalDateTime.now();
+//        this.code = errorEnum.getCode();
+//        if(code != 0){
+//            this.message = "failed";
+//        }
+        this(errorEnum.getCode(), errorEnum.getMessage());
     }
 
     public BaseResponse(int code, String message) {

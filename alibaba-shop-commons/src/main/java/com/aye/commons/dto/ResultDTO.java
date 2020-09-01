@@ -7,9 +7,9 @@ public class ResultDTO {
         return new CR<>();
     }
 
-    public static CR<?> create(Object data, int code){
-        return new CR<>(data, code);
-    }
+//    public static CR<?> create(Object data, int code){
+//        return new CR<>(data, code);
+//    }
 
     public static CR<?> create(Object data){
         return new CR<>(data);
