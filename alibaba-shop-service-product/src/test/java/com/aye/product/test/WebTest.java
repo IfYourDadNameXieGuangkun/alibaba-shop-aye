@@ -1,5 +1,7 @@
 package com.aye.product.test;
 
+import com.alibaba.fastjson.JSONObject;
+import com.aye.commons.domain.DataProduct;
 import com.aye.product.ProductServiceApplication;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -14,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.math.BigDecimal;
 
 /**
  * @ClassName WebTest
@@ -41,16 +46,31 @@ public class WebTest {
 
     @Test
     public void 根据sku查询商品() throws Exception {
-
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/product/list/products/ZH110")
-//                .param("sku", title))
+                .get("/product/list/products/ZH11106040")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
-                //.andExpect(MockMvcResultMatchers.jsonPath("$.code").value(0)) //使用Json path验证JSON 请参考http://goessner.net/articles/JsonPath/
                 .andDo(MockMvcResultHandlers.print());
-
     }
+
+    @Test
+    public void 新增商品() throws Exception {
+        DataProduct dataProduct = new DataProduct();
+        dataProduct.setCSku("ZH110110");
+        dataProduct.setCProductname("测试商品A");
+        dataProduct.setFPrice(BigDecimal.valueOf(1));
+        System.out.println(JSONObject.toJSONString(dataProduct));
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/product/save/product/")
+                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(dataProduct))
+                .accept(MediaType.APPLICATION_JSON)) //执行请求
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+
+
+
     @Test
     public void test() throws Exception {
 

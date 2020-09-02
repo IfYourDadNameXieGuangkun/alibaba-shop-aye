@@ -1,9 +1,12 @@
 package com.aye.commons.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,17 +29,18 @@ public class DataProduct implements Serializable {
     /**
      * 商品id
      */
-//    @TableId(value = "i_productid", type = IdType.AUTO)
     private Long iProductid;
 
     /**
      * 商品名称
      */
+//    @NotNull(message = "商品名称不能为空")
     private String cProductname;
 
     /**
      * 商家sku
      */
+//    @NotNull(message = "商品sku不能为空")
     private String cSku;
 
     /**
@@ -77,6 +81,8 @@ public class DataProduct implements Serializable {
     /**
      * 商品售价
      */
+//    @NotNull(message = "商品价格不能为空")
+//    @Min(value = 0,message = "价格不能小于0")
     private BigDecimal fPrice;
 
     /**
@@ -102,16 +108,19 @@ public class DataProduct implements Serializable {
     /**
      * 商品上架时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dShelveTime;
 
     /**
      * 数据创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dCreatetime;
 
     /**
      * 数据修改时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dModifiedtime;
 
     /**

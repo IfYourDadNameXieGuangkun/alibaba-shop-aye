@@ -5,15 +5,14 @@ import com.aye.commons.dto.CR;
 import com.aye.commons.dto.ResultDTO;
 import com.aye.product.service.IDataProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 /**
  * @ClassName ProductController
- * @Description TODO
+ * @Description 商品接口
  * @Author Aye
  * @Date 2020/8/29 17:03
  * @Version 1.0
@@ -24,8 +23,19 @@ public class ProductController {
 
     @Autowired
     private IDataProductService productService;
+
     @GetMapping("list/products/{sku}")
-    public CR<?> listProductsBySku(@PathVariable String sku){
+    public CR<?> listProductsBySku(@PathVariable String sku) {
         return ResultDTO.create(productService.selectProductWrapper(sku));
+    }
+
+    @GetMapping("list/products/")
+    public CR<?> listProducts() {
+        return ResultDTO.create(productService.list());
+    }
+
+    @PostMapping("save/product/")
+    public CR<?> listProducts(@Valid @RequestBody DataProduct dataProduct) {
+        return ResultDTO.create(productService.save(dataProduct));
     }
 }

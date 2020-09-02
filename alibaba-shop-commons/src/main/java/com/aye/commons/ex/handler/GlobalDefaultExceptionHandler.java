@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -40,9 +41,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  * @Date 2020/9/1 15:22
  * @Version 1.0
  */
+//@Component
 @ControllerAdvice
-@ConditionalOnWebApplication
-@ConditionalOnMissingBean(GlobalDefaultExceptionHandler.class)
+//@ConditionalOnWebApplication
+//@ConditionalOnMissingBean(GlobalDefaultExceptionHandler.class)
 public class GlobalDefaultExceptionHandler {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());

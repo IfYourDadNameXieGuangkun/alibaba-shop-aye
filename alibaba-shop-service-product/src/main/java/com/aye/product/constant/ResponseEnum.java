@@ -14,7 +14,9 @@ public enum ResponseEnum implements BizExceptionAssert {
     /**
      *
      */
-    LICENCE_NOT_FOUND(7002, "Licence not found.")
+    LICENCE_NOT_FOUND(7002, "Licence not found."),
+
+    PRODUCT_SKU_NOT_FOUND(7001, "sku不存在")
 
     ;
 
