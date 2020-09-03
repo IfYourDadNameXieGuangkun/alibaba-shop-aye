@@ -90,15 +90,21 @@ public class MysqlCodeGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
+        // 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        //表字段对应实体类生成策略(去掉数据库中字段前缀)
+        strategy.setFieldPrefix("i_","f_","c_","d_","r_");
+
         //strategy.setSuperEntityClass("com.alibaba.generator.common.BaseEntity");
         strategy.setEntityLombokModel(true);
         //strategy.setSuperControllerClass("com.alibaba.generator.common.BaseController");
         strategy.setInclude(scanner("表名"));
-        strategy.setSuperEntityColumns("id");
+        //是否生成数据库中对应的自增主键
+        //strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        //此处可以修改为您的表前缀
+        //strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
@@ -118,7 +124,7 @@ public class MysqlCodeGenerator {
         System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
+            if (StringUtils.isNotBlank(ipt)) {
                 return ipt;
             }
         }

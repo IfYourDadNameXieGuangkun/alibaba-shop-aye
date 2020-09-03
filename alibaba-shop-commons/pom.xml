@@ -15,7 +15,6 @@
     <name>shop-commons[工具类库]</name>
 
 
-
     <dependencies>
         <!-- Spring Begin -->
         <dependency>
@@ -84,6 +83,10 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
         </dependency>
         <!-- 持久层 end mybatis plus-->
 

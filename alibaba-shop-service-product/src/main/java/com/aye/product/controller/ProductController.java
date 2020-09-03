@@ -1,6 +1,7 @@
 package com.aye.product.controller;
 
 import com.aye.commons.domain.DataProduct;
+import com.aye.commons.domain.DataProduct1;
 import com.aye.commons.dto.CR;
 import com.aye.commons.dto.ResultDTO;
 import com.aye.product.service.IDataProductService;
@@ -24,6 +25,7 @@ public class ProductController {
     @Autowired
     private IDataProductService productService;
 
+
     @GetMapping("list/products/{sku}")
     public CR<?> listProductsBySku(@PathVariable String sku) {
         return ResultDTO.create(productService.selectProductWrapper(sku));
@@ -35,7 +37,8 @@ public class ProductController {
     }
 
     @PostMapping("save/product/")
-    public CR<?> listProducts(@Valid @RequestBody DataProduct dataProduct) {
+    public CR<?> saveProduct(@Valid @RequestBody DataProduct dataProduct) {
         return ResultDTO.create(productService.save(dataProduct));
     }
+
 }

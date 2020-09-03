@@ -4,34 +4,21 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.aye.commons.domain.DataProduct">
-        <id column="i_productid" property="iProductid" />
-        <result column="c_productname" property="cProductname" />
-        <result column="c_sku" property="cSku" />
-        <result column="c_third_pro_code" property="cThirdProCode" />
-        <result column="c_unit" property="cUnit" />
-        <result column="f_weight" property="fWeight" />
-        <result column="c_brandid" property="cBrandid" />
-        <result column="c_desname" property="cDesname" />
-        <result column="c_image" property="cImage" />
-        <result column="i_shelve" property="iShelve" />
-        <result column="f_price" property="fPrice" />
-        <result column="f_activity_price" property="fActivityPrice" />
-        <result column="f_cost_price" property="fCostPrice" />
-        <result column="i_sales" property="iSales" />
-        <result column="i_version" property="iVersion" />
-        <result column="d_shelve_time" property="dShelveTime" />
-        <result column="d_createtime" property="dCreatetime" />
-        <result column="d_modifiedtime" property="dModifiedtime" />
-        <result column="i_status" property="iStatus" />
-        <result column="i_upload" property="iUpload" />
-        <result column="c_madein" property="cMadein" />
-        <result column="shop_category_id" property="shopCategoryId" />
-        <result column="shop_category_name" property="shopCategoryName" />
+        <id column="id" property="id" />
+        <result column="c_product_name" property="productName" />
+        <result column="c_sku" property="sku" />
+        <result column="c_image" property="image" />
+        <result column="i_shelve" property="shelve" />
+        <result column="f_price" property="price" />
+        <result column="d_shelve_time" property="shelveTime" />
+        <result column="d_create_time" property="createTime" />
+        <result column="d_modified_time" property="modifiedTime" />
+        <result column="i_status" property="status" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        i_productid, c_productname, c_sku, c_third_pro_code, c_unit, f_weight, c_brandid, c_desname, c_image, i_shelve, f_price, f_activity_price, f_cost_price, i_sales, i_version, d_shelve_time, d_createtime, d_modifiedtime, i_status, i_upload, c_madein, shop_category_id, shop_category_name
+        id, c_product_name, c_sku, c_image, i_shelve, f_price, d_shelve_time, d_create_time, d_modified_time, i_status
     </sql>
 
 </mapper>

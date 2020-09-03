@@ -6,11 +6,11 @@ import org.springframework.stereotype.Repository;
 
 /**
  * <p>
- * 商家商品表 Mapper 接口
+ * 商品表 Mapper 接口
  * </p>
  *
  * @author Aye
- * @since 2020-08-29
+ * @since 2020-09-03
  */
 @Repository
 public interface DataProductMapper extends BaseMapper<DataProduct> {

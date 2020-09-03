@@ -1,17 +1,18 @@
 package com.aye.product.test;
 
-import com.alibaba.fastjson.JSONObject;
 import com.aye.commons.domain.DataProduct;
+import com.aye.commons.domain.DataProduct1;
 import com.aye.product.ProductServiceApplication;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -47,7 +48,16 @@ public class WebTest {
     @Test
     public void 根据sku查询商品() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/product/list/products/ZH11106040")
+                .get("/product/list/products/ZH110110A")
+                .accept(MediaType.APPLICATION_JSON)) //执行请求
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void 查询所有商品() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .get("/product/list/products/")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
@@ -56,22 +66,44 @@ public class WebTest {
     @Test
     public void 新增商品() throws Exception {
         DataProduct dataProduct = new DataProduct();
-        dataProduct.setCSku("ZH110110");
-        dataProduct.setCProductname("测试商品A");
-        dataProduct.setFPrice(BigDecimal.valueOf(1));
-        System.out.println(JSONObject.toJSONString(dataProduct));
-        mockMvc.perform(MockMvcRequestBuilders
+        dataProduct.setSku("ZH110110");
+        dataProduct.setProductName("测试商品A");
+        dataProduct.setPrice(BigDecimal.valueOf(20));
+        System.out.println(asJsonString(dataProduct));
+        mockMvc.perform( MockMvcRequestBuilders
                 .post("/product/save/product/")
-                .contentType(MediaType.APPLICATION_JSON).content(JSONObject.toJSONString(dataProduct))
+                .content(asJsonString(dataProduct))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+
+    @Test
+    public void 查询所有订单() throws Exception {
+       mockMvc.perform(MockMvcRequestBuilders
+                .get("/product/list/orders/")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
     }
 
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
-    @Test
+
+
+
+        @Test
     public void test() throws Exception {
 
         /*

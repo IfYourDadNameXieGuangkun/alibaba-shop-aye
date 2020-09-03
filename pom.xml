@@ -39,15 +39,16 @@
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
         <!-- mybatis 、swagger插件-->
-        <mybatis-plus-start.version>3.1.0</mybatis-plus-start.version>
+        <mybatis-plus-start.version>3.4.0</mybatis-plus-start.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
         <xxl-job.version>2.1.2</xxl-job.version>
         <email.version>1.4.4</email.version>
         <lang3.version>3.9</lang3.version>
         <collections4.version>4.4</collections4.version>
-        <druid-spring-boot-starter.version>1.1.9</druid-spring-boot-starter.version>
+        <druid-spring-boot-starter.version>1.1.21</druid-spring-boot-starter.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
+        <p6spy>3.8.1</p6spy>
     </properties>
     <dependencies>
         <!-- 工具 -->
@@ -103,6 +104,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-extension</artifactId>
                 <version>${mybatis-plus-start.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy}</version>
             </dependency>
             <!-- mybatis plus end-->
 
