@@ -117,6 +117,10 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
         </dependency>
         <!-- swagger2 end -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,7 +1,6 @@
 package com.aye.product.controller;
 
 import com.aye.commons.domain.DataProduct;
-import com.aye.commons.domain.DataProduct1;
 import com.aye.commons.dto.CR;
 import com.aye.commons.dto.ResultDTO;
 import com.aye.product.service.IDataProductService;

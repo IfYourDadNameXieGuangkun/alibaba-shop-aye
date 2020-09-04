@@ -1,7 +1,7 @@
 package com.aye.product.test;
 
 import com.aye.commons.domain.DataProduct;
-import com.aye.commons.domain.DataProduct1;
+import com.aye.commons.utils.BeanUtils;
 import com.aye.product.ProductServiceApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -23,7 +22,7 @@ import java.math.BigDecimal;
 
 /**
  * @ClassName WebTest
- * @Description TODO
+ * @Description Web层测试
  * @Author Aye
  * @Date 2020/8/29 17:24
  * @Version 1.0
@@ -66,13 +65,13 @@ public class WebTest {
     @Test
     public void 新增商品() throws Exception {
         DataProduct dataProduct = new DataProduct();
-        dataProduct.setSku("ZH110110");
-        dataProduct.setProductName("测试商品A");
-        dataProduct.setPrice(BigDecimal.valueOf(20));
-        System.out.println(asJsonString(dataProduct));
+        dataProduct.setSku("ZH110110C");
+        dataProduct.setProductName("测试商品C");
+        dataProduct.setPrice(BigDecimal.valueOf(0));
+        System.out.println(BeanUtils.asJsonString(dataProduct));
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/product/save/product/")
-                .content(asJsonString(dataProduct))
+                .content(BeanUtils.asJsonString(dataProduct))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
@@ -89,17 +88,6 @@ public class WebTest {
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
     }
-
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
 
 
 
@@ -132,20 +120,4 @@ public class WebTest {
 
     }
 
-    /**
-     * 测试线程池
-     */
-    @Test
-    public void testThread() {
-//        try {
-//            //while (true) {
-//            orderTaskService.orderTask();
-//
-//            //}
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Thread.currentThread().interrupt();
-//
-//        }
-    }
 }

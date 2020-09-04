@@ -3,10 +3,10 @@ spring:
     nacos:
       config:
         timeout: 100000
-        server-addr: localhost:8848
+        server-addr: 192.168.216.134:8848
         file-extension: yaml
         encode: UTF-8
-        namespace: 4313599c-42f9-4dae-8933-f767e290f6aa
+        namespace: 097fcb14-adfa-47be-ba34-c208c95768d1
         group: product
         prefix: shop-service-product
         #        扩展配置 : 优先级中,n越大,优先级越高
