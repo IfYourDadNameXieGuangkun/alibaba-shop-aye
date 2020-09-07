@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>alibaba-shop-aye</artifactId>
@@ -10,32 +9,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>alibaba-shop-service-email</artifactId>
+    <artifactId>alibaba-shop-gateway</artifactId>
     <packaging>jar</packaging>
-    <name>shop-service-mail[邮件发送]</name>
-
+    <name>shop-gateway[网关服务]</name>
     <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sourceforge.nekohtml</groupId>
-            <artifactId>nekohtml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-        </dependency>
-
+        <!-- 内部包 -->
         <dependency>
             <groupId>com.sca</groupId>
             <artifactId>alibaba-shop-commons</artifactId>
@@ -71,7 +49,22 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Spring Cloud Begin -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <!-- Spring Cloud End -->
+
+        <!-- Commons Begin -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <!-- Commons Begin -->
+
     </dependencies>
+
     <build>
         <!-- 打包后文件名称：项目名-环境-版本 -->
         <finalName>${project.artifactId}-${spring.profiles.active}-${project.version}</finalName>

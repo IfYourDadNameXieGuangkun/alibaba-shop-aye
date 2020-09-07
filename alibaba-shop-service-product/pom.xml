@@ -15,53 +15,15 @@
 
     <dependencies>
 
-        <!-- Spring Boot Begin -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- Spring Boot End -->
-
-        <!-- Spring Cloud Begin -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <!-- Spring Cloud End -->
-
-
-        <!-- rocketMq start -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
-        </dependency>
 
         <!-- Projects Begin 内部项目依赖 -->
         <dependency>
             <groupId>com.sca</groupId>
             <artifactId>alibaba-shop-commons</artifactId>
             <version>${project.parent.version}</version>
+            <exclusions>
+            
+            </exclusions>
         </dependency>
         <!-- Projects End -->
     </dependencies>

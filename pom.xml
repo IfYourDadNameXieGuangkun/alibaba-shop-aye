@@ -5,16 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>alibaba-shop-commons</module>
-<!--        <module>alibaba-shop-commons-domain</module>-->
-<!--        <module>alibaba-shop-commons-mapper</module>-->
-<!--        <module>alibaba-shop-commons-service</module>-->
         <module>alibaba-shop-code-generator</module>
 <!--        <module>alibaba-shop-external-skywalking</module>-->
         <module>alibaba-shop-service-reg</module>
         <module>alibaba-shop-service-email</module>
         <module>alibaba-shop-service-product</module>
-        <!--        <module>alibaba-shop-service-provider-item</module>-->
-<!--        <module>alibaba-shop-api</module>-->
+        <module>alibaba-shop-gateway</module>
     </modules>
 
     <parent>

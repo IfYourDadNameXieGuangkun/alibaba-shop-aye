@@ -1,7 +1,7 @@
 package com.aye.service.email.service.listener;
 
 import com.alibaba.fastjson.JSONObject;
-import com.aye.commons.domain.user.TUser;
+import com.aye.commons.domain.TUser;
 import com.aye.commons.stream.StreamSink;
 import com.aye.service.email.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;

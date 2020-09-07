@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        timeout: 100000
+        server-addr: 192.168.216.134:8848
+        file-extension: yaml
+        encode: UTF-8
+        namespace: 66cc210a-127b-40c5-bd5c-10e49aa1e0a6
+        group: gateway
+        prefix: api-gateway
+        #        扩展配置 : 优先级中,n越大,优先级越高
+#        ext-config[0]:
+#          data-id: nacos-provider-redis.yaml
+#          refresh: true
+#          group: provider
