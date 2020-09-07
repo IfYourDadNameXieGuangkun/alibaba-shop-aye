@@ -4,6 +4,8 @@ import com.aye.commons.domain.DataProduct;
 import com.aye.commons.dto.CR;
 import com.aye.commons.dto.ResultDTO;
 import com.aye.product.service.IDataProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,24 +21,28 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("product")
+@Api(tags = "商品管理")
 public class ProductController {
 
     @Autowired
     private IDataProductService productService;
 
 
-    @GetMapping("list/products/{sku}")
-    public CR<?> listProductsBySku(@PathVariable String sku) {
+    @ApiOperation(value = "根据sku查询商品",notes = "路径参数SKU")
+    @GetMapping("{sku}")
+    public CR<?> getBySku(@PathVariable String sku) {
         return ResultDTO.create(productService.selectProductWrapper(sku));
     }
 
-    @GetMapping("list/products/")
-    public CR<?> listProducts() {
+    @ApiOperation(value = "商品列表查询")
+    @GetMapping
+    public CR<?> list() {
         return ResultDTO.create(productService.list());
     }
 
-    @PostMapping("save/product/")
-    public CR<?> saveProduct(@Valid @RequestBody DataProduct dataProduct) {
+    @ApiOperation(value = "新增商品",notes = "传入Product信息",response = CR.class)
+    @PostMapping
+    public CR<?> save(@Valid @RequestBody DataProduct dataProduct) {
         return ResultDTO.create(productService.save(dataProduct));
     }
 
