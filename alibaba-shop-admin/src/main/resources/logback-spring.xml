@@ -2,13 +2,13 @@
 <configuration scan="true" scanPeriod="10 seconds">
 
     <springProfile name="local">
-        <property name="log.path" value="d:/test/shop-service-reg/logs/local"/>
+        <property name="log.path" value="d:/test/shop-admin/logs/local"/>
     </springProfile>
     <springProfile name="dev">
-        <property name="log.path" value="d:/test/shop-service-reg/logs/dev"/>
+        <property name="log.path" value="d:/test/shop-admin/logs/dev"/>
     </springProfile>
     <springProfile name="prod">
-        <property name="log.path" value="d:/test/shop-service-reg/logs/prod"/>
+        <property name="log.path" value="d:/test/shop-admin/logs/prod"/>
     </springProfile>
     <contextName>logback</contextName>
 
@@ -142,7 +142,7 @@
     </appender>
 
     <springProfile name="local">
-        <root level="info">
+        <root level="error">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>

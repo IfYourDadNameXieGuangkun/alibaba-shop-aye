@@ -1,0 +1,67 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+  servlet:
+    multipart:
+      #设置总上传的数据大小
+      max-request-size: 100MB
+      #单个文件大小
+      maxFileSize: 30MB
+      #shiro 报错修改的地方
+    max-connections: 200000
+    max-http-post-size: 9000000
+    #热部署模块
+    devtools:
+      restart:
+        #热部署开关
+        enabled: true
+        #指定热部署的目录
+        additional-paths: src/main/java
+        #指定目录不更新
+        exclude: test/**
+    mvc:   #静态文件
+      static-path-pattern: /static/**
+    #模板引擎
+    thymeleaf:
+      model: HTML5
+      prefix: classpath:/templates/
+      suffix: .html
+      #指定编码
+      encoding: utf-8
+      #禁用缓存 默认false
+      cache: false
+    jackson:
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+
+# 项目相关配置
+fuce:
+  #名称
+  name: v2
+  #版本
+  version: 3.9
+  #版权年份
+  copyrightYear: 2018
+  #文件上传路径
+  defaultBaseDir: D:/v2file/
+  #地址是否放入项目static目录，如果未Y 放入项目得static。 profile配置失效。  为N存放在D:/v2file/ 前端读取相同，不受影响
+  isstatic: Y
+  #开启存放静态文件夹后目录
+  isroot_dir: static/file_upload/
+  #邮件功能
+  #邮箱发送smtp
+  email_smtp: smtp.sina.com
+  #邮箱发送端口
+  email_port: 465
+  #发送邮箱登录账号
+  email_account: 1@sina.com
+  #发送邮箱登录密码
+  email_password: 1
+  #实例演示开关 启动该模式删除增加修改会弹出演示模式提示框
+  demoEnabled: false
+  #漂亮得拖动验证码 默认false普通验证码、true滚动验证码
+  rollVerification: true
+
+
+
+

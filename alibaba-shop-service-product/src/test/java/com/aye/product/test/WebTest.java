@@ -3,13 +3,17 @@ package com.aye.product.test;
 import com.aye.commons.domain.DataProduct;
 import com.aye.commons.utils.BeanUtils;
 import com.aye.product.ProductServiceApplication;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.aye.product.config.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -19,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
+import java.net.URL;
 
 /**
  * @ClassName WebTest
@@ -29,14 +34,28 @@ import java.math.BigDecimal;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {ProductServiceApplication.class, WebTest.class})
+@AutoConfigureMockMvc
 public class WebTest {
+
+//    @LocalServerPort
+//    private int port;
+//
+//    private URL base;
+//
+//    @Autowired
+//    private TestRestTemplate template;
+
     private MockMvc mockMvc;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
+    private Person person;
+
     @Before
-    public void setup() {
+    public void setup() throws Exception {
+        //base = new URL("http://localhost:" + port + "/");
         // 实例化方式一
 //        mockMvc = MockMvcBuilders.standaloneSetup(new Provider2FeignController()).build();
         // 实例化方式二
@@ -44,10 +63,17 @@ public class WebTest {
     }
 
 
+//    @Test
+//    public void getHello()  {
+//        ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+//        assert (response.getBody().equals("Greetings from Spring Boot!"));
+//    }
+
+
     @Test
     public void 根据sku查询商品() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/product/list/products/ZH110110B")
+                .get("/product/ZH110110B")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
@@ -69,7 +95,7 @@ public class WebTest {
         dataProduct.setProductName("测试商品C");
         dataProduct.setPrice(BigDecimal.valueOf(0));
         System.out.println(BeanUtils.asJsonString(dataProduct));
-        mockMvc.perform( MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .post("/product/save/product/")
                 .content(BeanUtils.asJsonString(dataProduct))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -82,16 +108,21 @@ public class WebTest {
 
     @Test
     public void 查询所有订单() throws Exception {
-       mockMvc.perform(MockMvcRequestBuilders
+        mockMvc.perform(MockMvcRequestBuilders
                 .get("/product/list/orders/")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
     }
 
+    @Test
+    public void 测试配置文件映射(){
+        System.out.println(person);
+
+    }
 
 
-        @Test
+    @Test
     public void test() throws Exception {
 
         /*
