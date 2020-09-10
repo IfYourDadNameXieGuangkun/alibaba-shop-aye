@@ -1,7 +1,11 @@
 package com.aye.admin;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 
 /**
  * @ClassName AdminApplication
@@ -12,6 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 //@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@EnableDiscoveryClient
+//@ComponentScan("com.aye.admin")
+@MapperScan("com.aye.admin.mapper")
 public class AdminApplication {
     public static void main(String[] args) {
 

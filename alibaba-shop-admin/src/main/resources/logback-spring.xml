@@ -142,7 +142,7 @@
     </appender>
 
     <springProfile name="local">
-        <root level="error">
+        <root level="info">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>

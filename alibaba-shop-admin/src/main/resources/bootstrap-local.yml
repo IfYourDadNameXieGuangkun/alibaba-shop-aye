@@ -7,11 +7,11 @@ spring:
         file-extension: yaml
         encode: UTF-8
         namespace: 4313599c-42f9-4dae-8933-f767e290f6aa
-        group: reg
-        prefix: shop-admin
+        group: admin
+        prefix: admin
         #        扩展配置 : 优先级中,n越大,优先级越高
         ext-config[0]:
-          data-id: shop-mysql.yaml
+          data-id: admin-mysql.yaml
           refresh: true
           group: dataSource
 

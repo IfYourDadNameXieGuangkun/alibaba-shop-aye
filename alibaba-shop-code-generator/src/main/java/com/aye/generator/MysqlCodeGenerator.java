@@ -50,7 +50,7 @@ public class MysqlCodeGenerator {
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/spring_boot?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");//TODO 需要修改的地方
+        dsc.setUrl("jdbc:mysql://localhost:3306/admin?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");//TODO 需要修改的地方
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         //TODO 需要修改的地方 mysql username
@@ -95,6 +95,7 @@ public class MysqlCodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //表字段对应实体类生成策略(去掉数据库中字段前缀)
         strategy.setFieldPrefix("i_","f_","c_","d_","r_");
+        strategy.setTablePrefix("t_");
 
         //strategy.setSuperEntityClass("com.alibaba.generator.common.BaseEntity");
         strategy.setEntityLombokModel(true);
