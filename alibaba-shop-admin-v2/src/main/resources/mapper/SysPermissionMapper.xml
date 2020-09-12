@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aye.admin.mapper.SysPermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.aye.admin.model.domain.SysPermission">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="descripion" property="descripion"/>
+        <result column="url" property="url"/>
+        <result column="is_blank" property="isBlank"/>
+        <result column="pid" property="pid"/>
+        <result column="perms" property="perms"/>
+        <result column="type" property="type"/>
+        <result column="icon" property="icon"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="visible" property="visible"/>
+        <result column="childcount" property="childCount"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible
+    </sql>
+    <sql id="Base_Column_List_Count">
+    id, name, descripion, url, is_blank, pid, perms, type, icon, order_num, visible, (select count(1) from t_sys_permission where pid=a.id) childcount
+  </sql>
+
+
+    <select id="queryRoleId" parameterType="String" resultMap="BaseResultMap">
+ 	select p.* from t_sys_permission p
+	left join t_sys_permission_role pr on p.id=pr.permission_id
+	where pr.role_id=#{roleid}
+    </select>
+    <select id="listSysPermissions" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List_Count" />
+        from t_sys_permission a
+        <if test="orderByClause != null">
+            order by order_num asc
+        </if>
+    </select>
+    <select id="findByAdminUserId" parameterType="String" resultMap="BaseResultMap">
+
+        select distinct p.*,(select count(1) from t_sys_permission where pid=p.id) childcount
+        from t_sys_permission_role spr,t_sys_role_user sru,t_sys_permission p
+        where 	spr.role_id = sru.sys_role_id AND spr.permission_id = p.id AND sru.sys_user_id=#{userId}
+		GROUP BY p.id
+		ORDER BY order_num  is null  ASC,order_num  ASC
+    </select>
+
+</mapper>

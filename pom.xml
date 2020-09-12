@@ -12,6 +12,7 @@
         <module>alibaba-shop-service-product</module>
         <module>alibaba-shop-gateway</module>
         <module>alibaba-shop-admin</module>
+        <module>alibaba-shop-admin-v2</module>
     </modules>
 
     <parent>

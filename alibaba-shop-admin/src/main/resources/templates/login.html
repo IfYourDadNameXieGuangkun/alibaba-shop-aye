@@ -14,7 +14,7 @@
 	<link rel="stylesheet" th:href="@{/static/admin/assets/css/signin.css}">
 	<!--icons -->
     <link rel="icon" th:href="@{/static/admin/images/favicon.ico}" type="image/x-icon">
-    
+
     <!-- 滚动验证码 -->
     <link rel="stylesheet" th:href="@{/static/login/disk/slidercaptcha.css}">
     <style type="text/css">
@@ -103,9 +103,9 @@
 								 <div class="col-lg-6">
 								 	 <img height="33px"  id="codeImg" alt="点击更换" title="点击更换" th:src="@{/captcha/captchaImage?type=char}" />
 								 </div>
-								
+
 							</div>
-                           
+
 						</div>
 						<div class="checkbox pull-left">
 							<label>
@@ -125,7 +125,7 @@
 								<a target="_blank" href="https://github.com/fuce1314/Springboot_v2" class="btn btn-twitter btn-block">
 								<span class="entypo-github space-icon"></span>Github</a>
 							</div>
-							
+
 						</div>
 						<div style="margin-top:25px" class="row">
 							<div class="col-md-6 row-block">
@@ -194,228 +194,228 @@
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WSrX4bCfgcjTfhWNCwvfI1ZnQnfZDxFW"></script>
 <!--兼容移动端滑块滑动表单安全验证码jquery插件 -->
 <script type="text/javascript" th:src="@{/static/login/disk/longbow.slidercaptcha.js}"></script>
-<script type="text/javascript" th:inline="javascript">
-window.rootPath=[[${rootPath}]];
-var isRoll=[[${RollVerification}]];
-$(document).ready(function(){
-	(function(window,document){
-		window.v2={
-			version:"3.2",
-			init:function(){
-				this.iftop();
-				this.yzmRefresh();
-				this.baiduMap();
-				this.loginSubmit();
-				this.showdd();
-				this.ifyzm();
-				this.rollVerification();
-			},
-			ifyzm:function(){
-				if(isRoll){
-					$("#yazm_div").hide();
-				}
-			},
-			iftop:function(){
-				//session获取iframe处理
-		    	if (window != top) {
-		          top.location.href = location.href;
-		        }
-			},
-			yzmRefresh:function(){
-				//刷新验证码
-		    	$('#codeImg').click(function() {
-					var url =rootPath+"/captcha/captchaImage?type=char&s=" + Math.random();
-					$("#codeImg").attr("src", url);
-				});
-			},
-			baiduMap:function(){
-				// 百度地图API功能
-				try {
-					var map = new BMap.Map("test1");
-			    	var point = new BMap.Point(106.475851,29.542392);
-			    	map.centerAndZoom(point, 10);
-			    	var marker = new BMap.Marker(point);  // 创建标注
-			    	map.addOverlay(marker);               // 将标注添加到地图中
-			    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-			    	map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的
-			    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-				} catch (e) {
-					
-				}
-		    	
-			},
-			showdd:function(){
-				var timer;
-				var current = 0;
-				var fhi = 1;
-				var current2 = 1;
-				var showfh=function(){
-					fhi = 1;
-					//关闭提示晃动屏幕，注释掉这句话即可
-					timer = setInterval(xzfh2, 10); 
-				};
-				var xzfh=function(){
-					current = (current)%360;
-					document.body.style.transform = 'rotate('+current+'deg)';
-					current ++;
-					if(current>360){current = 0;}
-				};
-				var xzfh2=function(){
-					if(fhi>50){
-						document.body.style.transform = '';
-						clearInterval(timer);
-						return;
-					}
-					current = (current2)%360;
-					document.body.style.transform = 'rotate('+current+'deg)';
-					current ++;
-					if(current2 == 1){current2 = -1;}else{current2 = 1;}
-					fhi++;
-				};
-				return {
-					init:function(){
-						showfh();
-					}
-				};
-			},
-			rollVerification:function(){
-				$('#captcha').sliderCaptcha({
-					width: 280,
-			        height: 150,
-			        sliderL: 42,//拼图宽度
-			        sliderR: 9,//拼图突出半径
-			        offset: 5,//验证容错偏差值 默认5个像素偏差即认为验证通过
-			        loadingText: '正在加载中...',//	图片加载时显示的文本信息
-			        failedText: '再试一次',
-			        barText: '向右滑动填充拼图',
-			        repeatIcon: 'fa fa-refresh',
-			        remoteUrl:rootPath+"/captcha/isVerify",
-			        verify: function (arr, url) {
-			            var ret = false;
-			            $.ajax({
-			                url: rootPath+"/captcha/isVerify",
-			                data: JSON.stringify(arr),
-			                async: false,
-			                cache: false,
-			                type: 'POST',
-			                contentType: 'application/json',
-			                dataType: 'json',
-			                success: function (result) {
-			                    ret = result;
-			                }
-			            });
-			            return ret;
-			        },
-					setSrc: function () {
-						//return 'http://images.sdgxgz.com/Pic' + Math.round(Math.random() * 136) + '.jpg';
-						return  rootPath+'/static/login/img/1.jpg';
-					},
-					onSuccess: function () {
-						var dataFormJson=$("#loginForm").serialize();
-						$.ajax({
-							cache : true,
-							type : "POST",
-							url : rootPath + "/admin/login",
-							data : dataFormJson,
-							async : false,
-							error : function(request) {
-								$.modal.alertError("系统错误");
-							},
-							success : function(data) {
-								if(data.code==200){
-									 location.href = rootPath + '/admin/index';
-								}else{
-									$('#myModal').modal('hide');
-									$('#captcha').sliderCaptcha('reset');
-									v2.showdd().init();
-									layer.msg(data.msg, function(){
-										//关闭后的操作
-									});
-								}
-								
-							}
-						});
-					},
-					onFail: function () {
+<!--<script type="text/javascript" th:inline="javascript">-->
+<!--window.rootPath=[[${rootPath}]];-->
+<!--var isRoll=[[${RollVerification}]];-->
+<!--$(document).ready(function(){-->
+<!--	(function(window,document){-->
+<!--		window.v2={-->
+<!--			version:"3.2",-->
+<!--			init:function(){-->
+<!--				this.iftop();-->
+<!--				this.yzmRefresh();-->
+<!--				this.baiduMap();-->
+<!--				this.loginSubmit();-->
+<!--				this.showdd();-->
+<!--				this.ifyzm();-->
+<!--				this.rollVerification();-->
+<!--			},-->
+<!--			ifyzm:function(){-->
+<!--				if(isRoll){-->
+<!--					$("#yazm_div").hide();-->
+<!--				}-->
+<!--			},-->
+<!--			iftop:function(){-->
+<!--				//session获取iframe处理-->
+<!--		    	if (window != top) {-->
+<!--		          top.location.href = location.href;-->
+<!--		        }-->
+<!--			},-->
+<!--			yzmRefresh:function(){-->
+<!--				//刷新验证码-->
+<!--		    	$('#codeImg').click(function() {-->
+<!--					var url =rootPath+"/captcha/captchaImage?type=char&s=" + Math.random();-->
+<!--					$("#codeImg").attr("src", url);-->
+<!--				});-->
+<!--			},-->
+<!--			baiduMap:function(){-->
+<!--				// 百度地图API功能-->
+<!--				try {-->
+<!--					var map = new BMap.Map("test1");-->
+<!--			    	var point = new BMap.Point(106.475851,29.542392);-->
+<!--			    	map.centerAndZoom(point, 10);-->
+<!--			    	var marker = new BMap.Marker(point);  // 创建标注-->
+<!--			    	map.addOverlay(marker);               // 将标注添加到地图中-->
+<!--			    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画-->
+<!--			    	map.setCurrentCity("重庆");          // 设置地图显示的城市 此项是必须设置的-->
+<!--			    	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放-->
+<!--				} catch (e) {-->
 
-			        },
-			        onRefresh: function () {
-			        
-			        }
-				});
-				
-			},
-			loginSubmit:function(){
-				$("#loginForm").validate({
-					rules:{
-						username:{
-							required:true,
-							minlength: 1,
-							maxlength: 20,
-						},
-						password:{
-							required:true,
-							minlength: 1,
-							maxlength: 20,
-						},
-						code:{
-							required:true,
-							minlength: 4,
-							maxlength: 20,
-						}
-					},
-					messages: {
-				        "name": {
-				            remote: "名称已经存在"
-				        }
-				    },
-					submitHandler:function(form){
-						if(isRoll){
-							$('#myModal').modal('show');
-						}else{
-							var dataFormJson=$("#loginForm").serialize();
-							$.ajax({
-								cache : true,
-								type : "POST",
-								url : rootPath + "/admin/login",
-								data : dataFormJson,
-								async : false,
-								error : function(request) {
-									$.modal.alertError("系统错误");
-								},
-								success : function(data) {
-									if(data.code==200){
-										 location.href = rootPath + '/admin/index';
-									}else{
-										v2.showdd().init();
-										layer.msg(data.msg, function(){
-											//关闭后的操作
-										});
-									}
-									
-								}
-							});
-						}
-						
-					}
-				});
-			}
-		};
-		
-		v2.init();
-	})(window,document);
-})
+<!--				}-->
 
-</script>
-<script>
-//
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?76968355bd5f8c263c65a1ad6dca8fa8";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<!--			},-->
+<!--			showdd:function(){-->
+<!--				var timer;-->
+<!--				var current = 0;-->
+<!--				var fhi = 1;-->
+<!--				var current2 = 1;-->
+<!--				var showfh=function(){-->
+<!--					fhi = 1;-->
+<!--					//关闭提示晃动屏幕，注释掉这句话即可-->
+<!--					timer = setInterval(xzfh2, 10);-->
+<!--				};-->
+<!--				var xzfh=function(){-->
+<!--					current = (current)%360;-->
+<!--					document.body.style.transform = 'rotate('+current+'deg)';-->
+<!--					current ++;-->
+<!--					if(current>360){current = 0;}-->
+<!--				};-->
+<!--				var xzfh2=function(){-->
+<!--					if(fhi>50){-->
+<!--						document.body.style.transform = '';-->
+<!--						clearInterval(timer);-->
+<!--						return;-->
+<!--					}-->
+<!--					current = (current2)%360;-->
+<!--					document.body.style.transform = 'rotate('+current+'deg)';-->
+<!--					current ++;-->
+<!--					if(current2 == 1){current2 = -1;}else{current2 = 1;}-->
+<!--					fhi++;-->
+<!--				};-->
+<!--				return {-->
+<!--					init:function(){-->
+<!--						showfh();-->
+<!--					}-->
+<!--				};-->
+<!--			},-->
+<!--			rollVerification:function(){-->
+<!--				$('#captcha').sliderCaptcha({-->
+<!--					width: 280,-->
+<!--			        height: 150,-->
+<!--			        sliderL: 42,//拼图宽度-->
+<!--			        sliderR: 9,//拼图突出半径-->
+<!--			        offset: 5,//验证容错偏差值 默认5个像素偏差即认为验证通过-->
+<!--			        loadingText: '正在加载中...',//	图片加载时显示的文本信息-->
+<!--			        failedText: '再试一次',-->
+<!--			        barText: '向右滑动填充拼图',-->
+<!--			        repeatIcon: 'fa fa-refresh',-->
+<!--			        remoteUrl:rootPath+"/captcha/isVerify",-->
+<!--			        verify: function (arr, url) {-->
+<!--			            var ret = false;-->
+<!--			            $.ajax({-->
+<!--			                url: rootPath+"/captcha/isVerify",-->
+<!--			                data: JSON.stringify(arr),-->
+<!--			                async: false,-->
+<!--			                cache: false,-->
+<!--			                type: 'POST',-->
+<!--			                contentType: 'application/json',-->
+<!--			                dataType: 'json',-->
+<!--			                success: function (result) {-->
+<!--			                    ret = result;-->
+<!--			                }-->
+<!--			            });-->
+<!--			            return ret;-->
+<!--			        },-->
+<!--					setSrc: function () {-->
+<!--						//return 'http://images.sdgxgz.com/Pic' + Math.round(Math.random() * 136) + '.jpg';-->
+<!--						return  rootPath+'/static/login/img/1.jpg';-->
+<!--					},-->
+<!--					onSuccess: function () {-->
+<!--						var dataFormJson=$("#loginForm").serialize();-->
+<!--						$.ajax({-->
+<!--							cache : true,-->
+<!--							type : "POST",-->
+<!--							url : rootPath + "/admin/login",-->
+<!--							data : dataFormJson,-->
+<!--							async : false,-->
+<!--							error : function(request) {-->
+<!--								$.modal.alertError("系统错误");-->
+<!--							},-->
+<!--							success : function(data) {-->
+<!--								if(data.code==200){-->
+<!--									 location.href = rootPath + '/admin/index';-->
+<!--								}else{-->
+<!--									$('#myModal').modal('hide');-->
+<!--									$('#captcha').sliderCaptcha('reset');-->
+<!--									v2.showdd().init();-->
+<!--									layer.msg(data.msg, function(){-->
+<!--										//关闭后的操作-->
+<!--									});-->
+<!--								}-->
+
+<!--							}-->
+<!--						});-->
+<!--					},-->
+<!--					onFail: function () {-->
+
+<!--			        },-->
+<!--			        onRefresh: function () {-->
+
+<!--			        }-->
+<!--				});-->
+
+<!--			},-->
+<!--			loginSubmit:function(){-->
+<!--				$("#loginForm").validate({-->
+<!--					rules:{-->
+<!--						username:{-->
+<!--							required:true,-->
+<!--							minlength: 1,-->
+<!--							maxlength: 20,-->
+<!--						},-->
+<!--						password:{-->
+<!--							required:true,-->
+<!--							minlength: 1,-->
+<!--							maxlength: 20,-->
+<!--						},-->
+<!--						code:{-->
+<!--							required:true,-->
+<!--							minlength: 4,-->
+<!--							maxlength: 20,-->
+<!--						}-->
+<!--					},-->
+<!--					messages: {-->
+<!--				        "name": {-->
+<!--				            remote: "名称已经存在"-->
+<!--				        }-->
+<!--				    },-->
+<!--					submitHandler:function(form){-->
+<!--						if(isRoll){-->
+<!--							$('#myModal').modal('show');-->
+<!--						}else{-->
+<!--							var dataFormJson=$("#loginForm").serialize();-->
+<!--							$.ajax({-->
+<!--								cache : true,-->
+<!--								type : "POST",-->
+<!--								url : rootPath + "/admin/login",-->
+<!--								data : dataFormJson,-->
+<!--								async : false,-->
+<!--								error : function(request) {-->
+<!--									$.modal.alertError("系统错误");-->
+<!--								},-->
+<!--								success : function(data) {-->
+<!--									if(data.code==200){-->
+<!--										 location.href = rootPath + '/admin/index';-->
+<!--									}else{-->
+<!--										v2.showdd().init();-->
+<!--										layer.msg(data.msg, function(){-->
+<!--											//关闭后的操作-->
+<!--										});-->
+<!--									}-->
+
+<!--								}-->
+<!--							});-->
+<!--						}-->
+
+<!--					}-->
+<!--				});-->
+<!--			}-->
+<!--		};-->
+
+<!--		v2.init();-->
+<!--	})(window,document);-->
+<!--})-->
+
+<!--</script>-->
+<!--<script>-->
+<!--//-->
+<!--var _hmt = _hmt || [];-->
+<!--(function() {-->
+<!--  var hm = document.createElement("script");-->
+<!--  hm.src = "https://hm.baidu.com/hm.js?76968355bd5f8c263c65a1ad6dca8fa8";-->
+<!--  var s = document.getElementsByTagName("script")[0];-->
+<!--  s.parentNode.insertBefore(hm, s);-->
+<!--})();-->
+<!--</script>-->
 </body>
 </html>

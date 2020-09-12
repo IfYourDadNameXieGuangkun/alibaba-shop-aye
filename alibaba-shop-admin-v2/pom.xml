@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>alibaba-shop-aye</artifactId>
+        <groupId>com.sca</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>alibaba-shop-admin-v2</artifactId>
+    <packaging>jar</packaging>
+    <name>alibaba-shop-admin-v2[后台管理]</name>
+
+    <dependencies>
+        <!-- Hutool是一个Java工具包 http://hutool.cn/  start-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.1.12</version>
+        </dependency>
+        <!-- Hutool是一个Java工具包 http://hutool.cn/  end-->
+
+        <!-- google验证码 start-->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <!-- google验证码  end-->
+
+        <!-- 配置文件读取 start-->
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <!-- 配置文件读取 end -->
+
+
+
+        <!-- Projects Begin 内部项目依赖 -->
+        <dependency>
+            <groupId>com.sca</groupId>
+            <artifactId>alibaba-shop-commons</artifactId>
+            <version>${project.parent.version}</version>
+            <exclusions>
+
+            </exclusions>
+        </dependency>
+
+        <!-- SpringBoot start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>false</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- SpringBoot end -->
+
+        
+
+
+        <!-- shiro权限 start -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.shiro</groupId>-->
+<!--            <artifactId>shiro-spring</artifactId>-->
+<!--            <version>1.4.0</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.github.theborakompanioni</groupId>-->
+<!--            <artifactId>thymeleaf-extras-shiro</artifactId>-->
+<!--            <version>2.0.0</version>-->
+<!--        </dependency>-->
+        <!-- shiro end -->
+
+    </dependencies>
+
+
+    <build>
+        <!-- 打包后文件名称：项目名-环境-版本 -->
+        <finalName>${project.artifactId}-${spring.profiles.active}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application.yml</include>
+                    <include>application-${spring.profiles.active}.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>

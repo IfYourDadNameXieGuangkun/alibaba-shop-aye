@@ -66,6 +66,7 @@ public class AdminController {
     @ApiOperation(value = "首页", notes = "首页")
     @GetMapping("/index")
     public String index(HttpServletRequest request) {
+        String defaultBaseDir = V2Config.getDefaultBaseDir();
         //获取菜单栏
         BootstrapTree bootstrapTree = sysPermissionService.getBootBootstrapTreePerm(ShiroUtils.getUserId());
         request.getSession().setAttribute("bootstrapTree", bootstrapTree);

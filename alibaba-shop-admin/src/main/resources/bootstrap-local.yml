@@ -14,14 +14,3 @@ spring:
           data-id: admin-mysql.yaml
           refresh: true
           group: dataSource
-
-
-
-
-
-
-
-
-
-
-
