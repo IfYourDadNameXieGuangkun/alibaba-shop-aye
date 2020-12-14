@@ -23,8 +23,6 @@ import java.util.Optional;
 @RequestMapping("reg")
 @Api(tags = "用户注册登录")
 public class RegController {
-    @Value("${redis}")
-    private String redis;
 
 //    @Autowired
 //    private ITUserService userService;

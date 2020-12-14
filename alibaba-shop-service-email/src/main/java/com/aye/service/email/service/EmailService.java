@@ -29,10 +29,10 @@ public class EmailService {
 
 
 
-    @Value("${mail.fromMail.addr}")
-    private String from;
+//    @Value("${mail.fromMail.addr}")
+//    private String from;
 
-//    private String  from ="240291083@qq.com";
+    private String  from ="240291083@qq.com";
     /**
      * 发送文本邮件
      * @param to

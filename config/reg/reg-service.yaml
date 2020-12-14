@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: reg-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+server:
+  port: 9001
+
+feign:
+  sentinel:
+    enabled: true

@@ -6,7 +6,7 @@ spring:
         server-addr: localhost:8848
         file-extension: yaml
         encode: UTF-8
-        namespace: 4313599c-42f9-4dae-8933-f767e290f6aa
+        namespace: d5387b9c-9a9b-4d54-a99e-8f0a0269dcdd
         group: reg
         prefix: shop-service-reg
         #        扩展配置 : 优先级中,n越大,优先级越高
