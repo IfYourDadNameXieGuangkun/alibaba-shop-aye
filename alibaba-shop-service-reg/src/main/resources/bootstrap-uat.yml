@@ -1,31 +1,31 @@
-spring:
-  cloud:
-    nacos:
-      config:
-        timeout: 100000
-        server-addr: 192.168.216.134:8848
-        file-extension: yaml
-        encode: UTF-8
-        namespace: 097fcb14-adfa-47be-ba34-c208c95768d1
-        group: reg
-        prefix: shop-service-reg
-        #        扩展配置 : 优先级中,n越大,优先级越高
-        ext-config[0]:
-          data-id: shop-mysql.yaml
-          refresh: true
-          group: dataSource
-        ext-config[1]:
-          data-id: reg-service-mq.yaml
-          refresh: true
-          group: msg
-
-
-
-
-
-
-
-
-
-
-
+#spring:
+#  cloud:
+#    nacos:
+#      config:
+#        timeout: 100000
+#        server-addr: 192.168.216.134:8848
+#        file-extension: yaml
+#        encode: UTF-8
+#        namespace: 097fcb14-adfa-47be-ba34-c208c95768d1
+#        group: reg
+#        prefix: shop-service-reg
+#        #        扩展配置 : 优先级中,n越大,优先级越高
+#        ext-config[0]:
+#          data-id: shop-mysql.yaml
+#          refresh: true
+#          group: dataSource
+#        ext-config[1]:
+#          data-id: reg-service-mq.yaml
+#          refresh: true
+#          group: msg
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#

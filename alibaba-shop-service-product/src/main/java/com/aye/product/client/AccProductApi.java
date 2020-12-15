@@ -27,6 +27,7 @@ public class AccProductApi {
 
     @GetMapping(value = "/get/{sku}")
     public List<DataProduct> getProductBySku(@PathVariable("sku") String sku){
+        System.out.println("进来了"+sku);
         return productService.selectProductWrapper(sku);
     }
 }

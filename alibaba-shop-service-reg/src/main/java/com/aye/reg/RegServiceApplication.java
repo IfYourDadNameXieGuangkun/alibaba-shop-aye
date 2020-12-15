@@ -15,7 +15,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @ComponentScan("com.aye")
 @MapperScan("com.aye.commons.mapper")
-@EnableBinding({StreamSink.class, StreamSource.class})
+@EnableBinding({ StreamSource.class,StreamSink.class})
+//@EnableBinding({ StreamSource.class})
 @EnableSwagger2
 @EnableFeignClients(basePackages = {"com.aye.commons.client"})
 public class RegServiceApplication {

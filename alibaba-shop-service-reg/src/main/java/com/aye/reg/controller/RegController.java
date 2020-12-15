@@ -54,7 +54,7 @@ public class RegController {
     @PostMapping(value = "/user/reg")
     public CR<?> userReg(@ApiParam(name = "TUser" , value = "用户模型") @RequestBody User user) {
 
-        if (!Optional.ofNullable(user.getCard()).isPresent()){
+        if (Optional.ofNullable(user.getCard()).isPresent()){
             //todo 异步mq邮件发送注册成功
             source.EMAIL_OUTPUT().send(MessageBuilder.withPayload(user).build());
         }

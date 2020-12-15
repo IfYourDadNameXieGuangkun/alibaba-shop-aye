@@ -16,7 +16,7 @@ import java.util.List;
  * @Date 2020/9/4 15:35
  * @Version 1.0
  */
-@FeignClient(value = "shop-service-product" ,fallback = ProductFallBack.class,path = "cliProduct")
+@FeignClient(value = "product-service" ,fallback = ProductFallBack.class,path = "cliProduct")
 public interface ProductClient {
     @GetMapping(value = "/get/{sku}")
     List<DataProduct> getProductBySku(@PathVariable("sku") String sku);

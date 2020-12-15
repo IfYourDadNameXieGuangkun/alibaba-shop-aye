@@ -1,44 +1,44 @@
-spring:
-  cloud:
-    nacos:
-      config:
-        timeout: 100000
-        server-addr: 192.168.216.134:8848
-        file-extension: yaml
-        encode: UTF-8
-        namespace: 04fa7c1a-1a9c-4d96-b4ab-34e446ba4387
-        group: reg
-        prefix: shop-service-reg
-        #        扩展配置 : 优先级中,n越大,优先级越高
-#        ext-config[0]:
-#          data-id: nacos-provider-redis.yaml
-#          refresh: true
-#          group: provider
-#        ext-config[1]:
-#          data-id: nacos-datasource.yaml
-#          refresh: true
-#          group: dataSource
-#        ext-config[2]:
-#          data-id: nacos-redis.yaml
-#          refresh: true
-#          group: dataSource
-#        ext-config[3]:
-#          data-id: nacos-mail.yaml
-#          refresh: true
-#          group: tools
-#        ext-config[4]:
-#          data-id: nacos-provider-mq.yaml
-#          refresh: true
-#          group: provider
-
-
-
-
-
-
-
-
-
-
-
-
+#spring:
+#  cloud:
+#    nacos:
+#      config:
+#        timeout: 100000
+#        server-addr: 192.168.216.134:8848
+#        file-extension: yaml
+#        encode: UTF-8
+#        namespace: 04fa7c1a-1a9c-4d96-b4ab-34e446ba4387
+#        group: reg
+#        prefix: shop-service-reg
+#        #        扩展配置 : 优先级中,n越大,优先级越高
+##        ext-config[0]:
+##          data-id: nacos-provider-redis.yaml
+##          refresh: true
+##          group: provider
+##        ext-config[1]:
+##          data-id: nacos-datasource.yaml
+##          refresh: true
+##          group: dataSource
+##        ext-config[2]:
+##          data-id: nacos-redis.yaml
+##          refresh: true
+##          group: dataSource
+##        ext-config[3]:
+##          data-id: nacos-mail.yaml
+##          refresh: true
+##          group: tools
+##        ext-config[4]:
+##          data-id: nacos-provider-mq.yaml
+##          refresh: true
+##          group: provider
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
