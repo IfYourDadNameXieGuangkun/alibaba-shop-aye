@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aye.commons.user.mapper.DbUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.aye.commons.user.domain.DbUser">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="password" property="password" />
+        <result column="c_email" property="email" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="c_tel" property="tel" />
+        <result column="c_addr" property="addr" />
+        <result column="card" property="card" />
+        <result column="married" property="married" />
+        <result column="salary" property="salary" />
+        <result column="d_create_time" property="createTime" />
+        <result column="d_modified_time" property="modifiedTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_name, password, c_email, age, sex, c_tel, c_addr, card, married, salary, d_create_time, d_modified_time
+    </sql>
+
+</mapper>

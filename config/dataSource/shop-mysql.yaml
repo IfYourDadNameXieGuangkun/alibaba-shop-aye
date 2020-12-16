@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    name: springboot
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+      #监控统计拦截的filters
+      filter: stat
+      #mysql驱动
+      driver-class-name: com.mysql.jdbc.Driver
+      #基本属性
+      url: jdbc:mysql://127.0.0.1:3306/alibaba_shop_aye?useUnicode=true&allowMultiQueries=TRUE&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      username: root
+      password: root
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+
+  #mybatis-plus配置
+  mybatis-plus:
+    mapper-locations: classpath:/mapper/**/*Mapper.xml
+    #实体扫描，多个package用逗号或者分号分隔
+    typeAliasesPackage: com.alibaba.api.business
+    typeEnumsPackage: com.alibaba.api.common.enums
+    type-aliases-super-type: java.lang.Object
+    # 原生配置
+    configuration:
+      # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+      # 驼峰下划线转换
+      map-underscore-to-camel-case: true
+      # 配置的缓存的全局开关
+      cache-enabled: false
+      # 延时加载的开关
+      lazy-loading-enabled: true
+      # 开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+      multiple-result-sets-enabled: true
+      use-generated-keys: true
+      default-statement-timeout: 60
+      default-fetch-size: 100
+    global-config:
+      # 数据库相关配置
+      db-config:
+        #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+        id-type: auto
+        #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+        field-strategy: NOT_NULL
+        #驼峰下划线转换
+        column-underline: true
+        #数据库大写下划线转换
+        #capital-mode: true
+        #逻辑删除配置
+        #      logic-delete-value: 0
+        #      logic-not-delete-value: 1
+        db-type: mysql
+        #刷新mapper 调试神器
+        refresh: true

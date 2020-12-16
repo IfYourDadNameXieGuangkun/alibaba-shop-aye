@@ -50,7 +50,7 @@ public class MysqlCodeGenerator {
         mpg.setGlobalConfig(gc);
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/admin?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");//TODO 需要修改的地方
+        dsc.setUrl("jdbc:mysql://localhost:3306/alibaba_shop_aye?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");//TODO 需要修改的地方
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         //TODO 需要修改的地方 mysql username
@@ -60,8 +60,21 @@ public class MysqlCodeGenerator {
         mpg.setDataSource(dsc);
 
         // 包配置
+        /**
+         * private String parent = "com.baomidou";
+         *     private String moduleName = "";
+         *     private String entity = "entity";
+         *     private String service = "service";
+         *     private String serviceImpl = "service.impl";
+         *     private String mapper = "mapper";
+         *     private String xml = "mapper.xml";
+         *     private String controller = "controller";
+         */
         PackageConfig pc = new PackageConfig();
+        //TODO 可自定义包名:
+        pc.setEntity("domain");
         pc.setModuleName(scanner("模块名"));
+
         //TODO 可改可不改就是包目录名称
         pc.setParent("com.aye.commons");
         mpg.setPackageInfo(pc);

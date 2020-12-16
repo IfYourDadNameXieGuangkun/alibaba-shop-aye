@@ -36,11 +36,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public List<DataProduct> listProductsByUserName(String username) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("user_name", username);
-//        List<User> users = userMapper.selectList(wrapper);
-//        ResponseEnum.PRODUCT_SKU_NOT_FOUND.assertNotEmpty(users);
-//        List<DataProduct> products = productClient.getProductBySku(users.get(0).getAddr());
-
-        List<DataProduct> products = productClient.getProductBySku("123");
+        List<User> users = userMapper.selectList(wrapper);
+        ResponseEnum.PRODUCT_SKU_NOT_FOUND.assertNotEmpty(users);
+        List<DataProduct> products = productClient.getProductBySku(users.get(0).getAddr());
         return products ;
     }
 }

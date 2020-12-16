@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: email-service
+  mail:
+    host: smtp.qq.com
+    # 你的邮箱授权码
+    password: hudaryleencbbhei
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    # 发送邮件的邮箱地址
+    username: 240291083@qq.com
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    # sentinel:
+    #   transport:
+    #     port: 8719
+    #     dashboard: 192.168.10.151:8080
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+server:
+  port: 9091
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -15,7 +15,7 @@ spring:
           refresh: true
           group: dataSource
         ext-config[1]:
-          data-id: reg-service-mq.yaml
+          data-id: mq-service.yaml
           refresh: true
           group: msg
 

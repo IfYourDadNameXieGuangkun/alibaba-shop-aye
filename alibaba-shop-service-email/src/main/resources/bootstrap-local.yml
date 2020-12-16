@@ -11,7 +11,7 @@ spring:
         prefix: shop-service-email
         #        扩展配置 : 优先级中,n越大,优先级越高
         ext-config[0]:
-          data-id: email-service-mq.yaml
+          data-id: mq-service.yaml
           refresh: true
           group: msg
 
