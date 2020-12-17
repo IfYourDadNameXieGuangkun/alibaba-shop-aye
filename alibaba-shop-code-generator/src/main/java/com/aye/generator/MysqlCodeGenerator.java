@@ -73,7 +73,8 @@ public class MysqlCodeGenerator {
         PackageConfig pc = new PackageConfig();
         //TODO 可自定义包名:
         pc.setEntity("domain");
-        pc.setModuleName(scanner("模块名"));
+//        pc.setModuleName(scanner("模块名"));
+        pc.setModuleName("");//空
 
         //TODO 可改可不改就是包目录名称
         pc.setParent("com.aye.commons");

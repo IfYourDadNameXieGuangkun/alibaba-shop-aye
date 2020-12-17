@@ -1,9 +1,9 @@
 package com.aye.reg.test;
 
 
-import com.aye.commons.domain.TUser;
+import com.aye.commons.domain.User;
 import com.aye.reg.RegServiceApplication;
-import com.aye.reg.service.ITUserService;
+import com.aye.reg.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ApiTest {
 
     @Autowired
-    private ITUserService userService;
+    private IUserService userService;
 
     @Test
     @After
@@ -31,7 +31,7 @@ public class ApiTest {
 
     @Test
     public void testFeign01(){
-        List<TUser> list = userService.list();
+        List<User> list = userService.list();
         list.forEach(user-> log.error(user.toString()));
     }
 

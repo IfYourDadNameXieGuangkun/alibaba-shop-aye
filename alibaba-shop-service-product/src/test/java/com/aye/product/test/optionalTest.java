@@ -36,10 +36,11 @@ public class optionalTest {
 
     @Test
     public void test01() {
-        User user = new User();
-        user.setUserName("aye");
-        user.setAge(10);
-        user.setPassword("123456");// throw new NullPointerException();
+//        User user = new User();
+//        user.setUserName("aye");
+//        user.setAge(10);
+//        user.setPassword("123456");// throw new NullPointerException();
+        User user = User.builder().userName("aye").age(10).password("123456").build();
         Optional<User> userOptional = Optional.ofNullable(user);
         String s = userOptional.map(User::getUserName)
                 .map(String::toUpperCase)

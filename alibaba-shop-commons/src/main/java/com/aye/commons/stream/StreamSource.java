@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public interface StreamSource {
 
-    String EMAIL_OUTPUT= "EMAIL_OUTPUT";
-    @Output(StreamSource.EMAIL_OUTPUT)
-    MessageChannel EMAIL_OUTPUT();
+    String REG_OUTPUT= "REG_OUTPUT";
+    @Output(StreamSource.REG_OUTPUT)
+    MessageChannel REG_OUTPUT();
 
 //    String OUTPUT2= "output2";
 //    @Output(StreamSource.OUTPUT2)

@@ -1,9 +1,6 @@
 package com.aye.commons.domain;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
@@ -17,16 +14,17 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 商品表
+ * 
  * </p>
  *
  * @author Aye
- * @since 2020-09-03
+ * @since 2020-12-17
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@TableName("t_product")
 @Builder
-public class DataProduct implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,7 +57,7 @@ public class DataProduct implements Serializable {
      * 是否上架 1为上架 0为下架
      */
     @TableField(value = "i_shelve")
-    private Boolean shelve;
+    private Integer shelve;
 
     /**
      * 商品售价
@@ -93,7 +91,7 @@ public class DataProduct implements Serializable {
      * 商品状态 1为可售 0 不可售
      */
     @TableField(value = "i_status")
-    private Boolean status;
+    private Integer status;
 
 
 }

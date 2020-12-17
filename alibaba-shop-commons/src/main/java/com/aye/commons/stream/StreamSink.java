@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public interface StreamSink {
 
-    String EMAIL_INPUT= "EMAIL_INPUT";
-    @Input(StreamSink.EMAIL_INPUT)
-    SubscribableChannel EMAIL_INPUT();
+    String REG_INPUT= "REG_INPUT";
+    @Input(StreamSink.REG_INPUT)
+    SubscribableChannel REG_INPUT();
 
 //    String INPUT2= "input2";
 //    @Input(StreamSink.INPUT2)

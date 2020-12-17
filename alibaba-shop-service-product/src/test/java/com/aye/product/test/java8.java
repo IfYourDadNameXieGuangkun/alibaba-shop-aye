@@ -145,16 +145,18 @@ public class java8 {
      */
     @Test
     public void peek() {
-        User aye = new User();
-        aye.setUserName("aye");
-        aye.setAge(10);
-        User gd = new User();
-        gd.setUserName("gd");
-        gd.setAge(13);
-        User xd = new User();
-        xd.setUserName("xd");
-        xd.setAge(18);
-
+        User aye = User
+                .builder()
+                .userName("aye")
+                .age(12).build();
+        User gd = User
+                .builder()
+                .userName("gd")
+                .age(10).build();
+        User xd = User
+                .builder()
+                .userName("xd")
+                .age(18).build();
         Stream.of(aye, gd, xd)
                 .peek(e -> e.setUserName(e.getAge() + e.getUserName()))
                 .forEach(e -> System.out.println(e.toString()));
@@ -186,15 +188,18 @@ public class java8 {
     @Test
     public void sortedObject() {
 
-        User aye = new User();
-        aye.setUserName("aye");
-        aye.setAge(10);
-        User gd = new User();
-        gd.setUserName("gd");
-        gd.setAge(13);
-        User xd = new User();
-        xd.setUserName("xd");
-        xd.setAge(18);
+        User aye = User
+                .builder()
+                .userName("aye")
+                .age(12).build();
+        User gd = User
+                .builder()
+                .userName("gd")
+                .age(10).build();
+        User xd = User
+                .builder()
+                .userName("xd")
+                .age(18).build();
 
         Stream.of(aye, gd, xd)
                 .sorted((e1, e2) -> e1.getAge() > e2.getAge() ? 1 : e1.getAge() == e2.getAge() ? 0 : -1)

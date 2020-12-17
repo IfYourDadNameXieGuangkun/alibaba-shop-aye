@@ -7,5 +7,5 @@ spring:
         bindings:
           input: {consumer.orderly: true}
       bindings:
-        EMAIL_OUTPUT: {destination: topic-email, content-type: application/json}
-        EMAIL_INPUT: {destination: topic-email, content-type: application/json, group: group-email, consumer.maxAttempts: 1}
+        REG_OUTPUT: {destination: reg-topic, content-type: application/json}
+        REG_INPUT: {destination: reg-topic, content-type: application/json, group: reg-group, consumer.maxAttempts: 1}

@@ -1,6 +1,7 @@
 package com.aye.product.test;
 
 import com.aye.commons.domain.DataProduct;
+import com.aye.commons.domain.Product;
 import com.aye.commons.utils.BeanUtils;
 import com.aye.product.ProductServiceApplication;
 import com.aye.product.config.Person;
@@ -16,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -72,11 +74,12 @@ public class WebTest {
 
     @Test
     public void 根据sku查询商品() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
                 .get("/product/ZH110110B")
                 .accept(MediaType.APPLICATION_JSON)) //执行请求
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType
                 .andDo(MockMvcResultHandlers.print());
+        System.out.println(resultActions);
     }
 
     @Test
@@ -90,14 +93,15 @@ public class WebTest {
 
     @Test
     public void 新增商品() throws Exception {
-        DataProduct dataProduct = new DataProduct();
-        dataProduct.setSku("ZH110110C");
-        dataProduct.setProductName("测试商品C");
-        dataProduct.setPrice(BigDecimal.valueOf(0));
-        System.out.println(BeanUtils.asJsonString(dataProduct));
+        Product product = Product.builder()
+                .sku("ZH110110C")
+                .productName("测试商品C")
+                .price(BigDecimal.TEN)
+                .build();
+        System.out.println(BeanUtils.asJsonString(product));
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/product/save/product/")
-                .content(BeanUtils.asJsonString(dataProduct))
+                .post("/product/")
+                .content(BeanUtils.asJsonString(product))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)) //验证响应contentType

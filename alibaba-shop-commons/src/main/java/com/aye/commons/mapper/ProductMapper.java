@@ -1,6 +1,6 @@
 package com.aye.commons.mapper;
 
-import com.aye.commons.domain.DbUser;
+import com.aye.commons.domain.Product;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
  * </p>
  *
  * @author Aye
- * @since 2020-12-16
+ * @since 2020-12-17
  */
 @Repository
-public interface DbUserMapper extends BaseMapper<DbUser> {
+public interface ProductMapper extends BaseMapper<Product> {
 
 }

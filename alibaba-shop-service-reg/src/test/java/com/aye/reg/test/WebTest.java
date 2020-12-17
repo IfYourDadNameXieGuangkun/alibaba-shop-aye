@@ -64,17 +64,16 @@ public class WebTest {
 
     @Test
     public void 新增商品() throws Exception {
-        User user = new User();
-        user.setUserName("aye");
-        user.setPassword("aye");
-        user.setAddr("aye");
-        user.setAge(18);
-        user.setCard("123456789012345678");
-        user.setEmail("2222@qq.com");
-        user.setMarried(false);
-        user.setSex(true);
-        user.setSalary(1233.112F);
-        user.setTel("1234567");
+        User user = User.builder()
+                .userName("随机")
+                .password("123")
+                .age(18)
+                .married(1)
+                .email("suiji@163.com")
+                .tel("1313")
+                .addr("随机地址")
+                .card("123")
+                .salary(BigDecimal.ONE).build();
         System.out.println(BeanUtils.asJsonString(user));
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/user/save/")
