@@ -1,11 +1,31 @@
 spring:
   cloud:
-    stream:
-      rocketmq:
-        binder:
-          namesrv-addr: localhost:9876
-        bindings:
-          input: {consumer.orderly: true}
-      bindings:
-        EMAIL_OUTPUT: {destination: topic-email, content-type: application/json}
-        EMAIL_INPUT: {destination: topic-email, content-type: application/json, group: group-email, consumer.maxAttempts: 1}
+    nacos:
+      config:
+        timeout: 100000
+        server-addr: localhost:8848
+        file-extension: yaml
+        encode: UTF-8
+        namespace: 2c9ad79f-0c66-4f64-875e-8d15f3b27c37
+        group: reg
+        prefix: shop-service-reg
+        #        扩展配置 : 优先级中,n越大,优先级越高
+        ext-config[0]:
+          data-id: shop-mysql.yaml
+          refresh: true
+          group: dataSource
+        ext-config[1]:
+          data-id: mq-service.yaml
+          refresh: true
+          group: msg
+
+
+
+
+
+
+
+
+
+
+

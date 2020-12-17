@@ -1,14 +1,28 @@
 spring:
-  application:
-    name: ${spring.application.name}
   cloud:
-    stream:
-      rocketmq:
-        binder:
-          # RocketMQ 服务器地址
-          namesrv-addr: 192.168.216.134:9876
-        bindings:
-          input: {consumer.orderly: true}
-      bindings:
-        EMAIL_OUTPUT: {destination: test-topic3, content-type: application/json}
-        # EMAIL_INPUT: {destination: test-topic3, content-type: text/plain, group: test-group3, consumer.maxAttempts: 1}
+    nacos:
+      config:
+        timeout: 100000
+        server-addr: localhost:8848
+        file-extension: yaml
+        encode: UTF-8
+        namespace: 2c9ad79f-0c66-4f64-875e-8d15f3b27c37
+        group: email
+        prefix: shop-service-email
+        #        扩展配置 : 优先级中,n越大,优先级越高
+        ext-config[0]:
+          data-id: mq-service.yaml
+          refresh: true
+          group: msg
+
+
+
+
+
+
+
+
+
+
+
+

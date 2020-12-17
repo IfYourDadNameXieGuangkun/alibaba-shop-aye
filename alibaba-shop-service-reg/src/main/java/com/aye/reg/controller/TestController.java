@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,20 +39,31 @@ public class TestController {
         return "My Name is:" + list.size() + name;
     }
 
-    @ApiOperation(value = "用户登陆", notes = "根据用户名、密码判断该用户是否存在")
-    @PostMapping(value = "/user/login")
-    public String login(@RequestParam(value = "name", required = false) String name,
-                        @RequestParam(value = "pass", required = false) String pass) {
-
-        //userService.saveOrUpdate(new TUser().setPassword("OASD"), new UpdateWrapper<TUser>());
-        return null;
-    }
 
     @ApiOperation(value = "发送邮件测试", notes = "参数为发送信息")
     @PostMapping(value = "/sendEmail")
     public CR<?> userReg(@ApiParam(name = "msg", value = "用户模型") String msg) {
 
         source.REG_OUTPUT().send(MessageBuilder.withPayload(msg).build());
+        return ResultDTO.create();
+    }
+
+    @ApiOperation(value = "创建用户测试", notes = "参数为发送信息")
+    @PostMapping(value = "/random/create/user")
+    public CR<?> createUser() {
+//        User user = User.builder()
+//                .userName("随机")
+//                .password("123")
+//                .age(18)
+//                .married(1)
+//                .email("suiji@163.com")
+//                .tel("1313")
+//                .card("123")
+//                .salary(BigDecimal.ONE).build();
+        User user = new User();
+        user.setUserName("测试字段填充");
+        boolean flag = userService.save(user);
+        System.out.println(flag);
         return ResultDTO.create();
     }
 

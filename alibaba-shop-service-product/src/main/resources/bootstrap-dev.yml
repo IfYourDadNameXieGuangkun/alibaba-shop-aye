@@ -3,34 +3,21 @@ spring:
     nacos:
       config:
         timeout: 100000
-        server-addr: 192.168.216.134:8848
+        server-addr: localhost:8848
         file-extension: yaml
         encode: UTF-8
-        namespace: 7a068a49-194c-4b91-ab62-e9bd5cf90a74
-        group: reg
-        prefix: shop-service-reg
+        namespace: 2c9ad79f-0c66-4f64-875e-8d15f3b27c37
+        group: product
+        prefix: shop-service-product
         #        扩展配置 : 优先级中,n越大,优先级越高
-#        ext-config[0]:
-#          data-id: nacos-provider-redis.yaml
-#          refresh: true
-#          group: provider
-#        ext-config[1]:
-#          data-id: nacos-datasource.yaml
-#          refresh: true
-#          group: dataSource
-#        ext-config[2]:
-#          data-id: nacos-redis.yaml
-#          refresh: true
-#          group: dataSource
-#        ext-config[3]:
-#          data-id: nacos-mail.yaml
-#          refresh: true
-#          group: tools
-#        ext-config[4]:
-#          data-id: nacos-provider-mq.yaml
-#          refresh: true
-#          group: provider
-
+        ext-config[0]:
+          data-id: shop-mysql.yaml
+          refresh: true
+          group: dataSource
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
 
 
 

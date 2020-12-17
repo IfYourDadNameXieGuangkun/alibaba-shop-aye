@@ -7,9 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import org.apache.ibatis.type.TypeHandler;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Table;
@@ -32,6 +31,8 @@ import java.time.LocalDateTime;
 @Table(name = "user")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -83,7 +84,7 @@ public class User implements Serializable {
     /**
      * 地址
      */
-    @TableField(value = "c_addr")
+    @TableField(value = "c_addr",fill = FieldFill.INSERT)
     private String addr;
 
     /**

@@ -47,6 +47,15 @@ public class UserController {
         return ResultDTO.create(userService.getById(id));
     }
 
+    @ApiOperation(value = "用户登陆", notes = "根据用户名、密码判断该用户是否存在")
+    @PostMapping(value = "/login")
+    public CR<?> login(@RequestParam(name = "userName", value = "name", required = false) String userName,
+                       @RequestParam(name = "password", value = "pass", required = false) String password) {
+        System.out.println(userName + password);
+        //userService.saveOrUpdate(new TUser().setPassword("OASD"), new UpdateWrapper<TUser>());
+        return ResultDTO.create("Success");
+    }
+
     @GetMapping("/products/{username}")
     public CR<?> listProductsByUserName(@PathVariable(name = "username") String username) {
         return ResultDTO.create(userService.listProductsByUserName(username));
@@ -62,12 +71,12 @@ public class UserController {
                 .married(1)
                 .email("suiji@163.com")
                 .tel("1313")
-                .addr("随机地址")
                 .card("123")
                 .salary(BigDecimal.ONE).build();
 
         source.REG_OUTPUT().send(MessageBuilder.withPayload(user).build());
         return ResultDTO.create("success");
     }
+
 
 }
