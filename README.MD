@@ -6,3 +6,5 @@
 # 2.网关路由规则:
 ###2-1.访问reg模块访问 localhost:9000/reg-service +路径 例如: localhost:9000/reg-service/user?token=1
 ###2-2.访问product模块访问 localhost:9000/product-service +路径 例如:localhost:9000/product-service/product?token=1
+
+#继续开发,master上开发,完成某个大功能后,升级版本脚手架为 v1 版本..后续v2..以此类推..
