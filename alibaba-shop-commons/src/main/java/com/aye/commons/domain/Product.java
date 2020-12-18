@@ -62,7 +62,7 @@ public class Product implements Serializable {
     /**
      * 商品售价
      */
-    @TableField(value = "f_price")
+    @TableField(value = "price")
     @Min(value = 1,message = "商品价格不能小于1")
     private BigDecimal price;
 

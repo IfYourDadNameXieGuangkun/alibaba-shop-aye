@@ -26,13 +26,13 @@ public class UserController {
     private StreamSource source;
 
     @ApiOperation(value = "列表查询", notes = "无入参,查询所有用户信息", response = CR.class)
-    @GetMapping("/")
+    @GetMapping
     public CR<?> listUsers() {
         return ResultDTO.create(userService.list());
     }
 
     @ApiOperation(value = "新增用户", notes = "传入User对象,并发送邮件", response = CR.class)
-    @PostMapping("/")
+    @PostMapping
     public CR<?> addUser(@Valid @RequestBody User user) {
         if (Optional.ofNullable(user.getUserName()).isPresent() && user.getUserName().equals("admin")) {
             //todo 异步mq邮件发送注册成功
@@ -49,8 +49,8 @@ public class UserController {
 
     @ApiOperation(value = "用户登陆", notes = "根据用户名、密码判断该用户是否存在")
     @PostMapping(value = "/login")
-    public CR<?> login(@RequestParam(name = "userName", value = "name", required = false) String userName,
-                       @RequestParam(name = "password", value = "pass", required = false) String password) {
+    public CR<?> login(@RequestParam(value = "userName", required = false) String userName,
+                       @RequestParam(value = "password", required = false) String password) {
         System.out.println(userName + password);
         //userService.saveOrUpdate(new TUser().setPassword("OASD"), new UpdateWrapper<TUser>());
         return ResultDTO.create("Success");
