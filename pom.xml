@@ -13,6 +13,7 @@
         <module>alibaba-shop-gateway</module>
         <module>alibaba-shop-admin</module>
         <module>alibaba-shop-admin-v2</module>
+        <module>alibaba-design-pattern</module>
     </modules>
 
     <parent>
