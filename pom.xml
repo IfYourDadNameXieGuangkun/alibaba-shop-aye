@@ -14,6 +14,7 @@
         <module>alibaba-shop-admin</module>
         <module>alibaba-shop-admin-v2</module>
         <module>alibaba-design-pattern</module>
+        <module>alibaba-shop-service-stock</module>
     </modules>
 
     <parent>
