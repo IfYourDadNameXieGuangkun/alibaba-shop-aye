@@ -1,6 +1,6 @@
 package com.lppz.stock.platform.base;
 
-import com.lppz.takeout.exception.BizException;
+import com.aye.commons.ex.exception.BizException;
 import com.lppz.util.http.BaseHttpClientsComponent;
 
 import java.util.Map;

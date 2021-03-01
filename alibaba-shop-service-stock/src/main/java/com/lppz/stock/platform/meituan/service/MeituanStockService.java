@@ -3,8 +3,11 @@ package com.lppz.stock.platform.meituan.service;
 import com.lppz.stock.platform.base.*;
 import com.lppz.stock.platform.meituan.call.CallSkuStock;
 import com.lppz.stock.platform.meituan.pojo.common.MeituanResponse;
+import com.lppz.stock.platform.meituan.pojo.common.MeituanStockEntry;
 import com.lppz.stock.platform.meituan.pojo.common.MeituanStockResponse;
 import com.lppz.stock.platform.meituan.pojo.request.MeituanStockRequest;
+import com.lppz.stock.platform.meituan.pojo.request.MeituanStockRequest.Skus;
+import com.lppz.stock.platform.meituan.pojo.request.MeituanStockRequest.FoodData;
 import com.lppz.stock.pojo.StockEntry;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -23,28 +26,28 @@ public class MeituanStockService extends CallMethod<MeituanStockRequest, Meituan
 
     @Override
     public MeituanResponse run(Object obj) {
-        List<StockEntry> stocks = (List<StockEntry>) obj;
+        List<MeituanStockEntry> stocks = (List<MeituanStockEntry>) obj;
         if (CollectionUtils.isEmpty(stocks)) {
             MeituanResponse rep = new MeituanStockResponse();
-            rep.setError(new MeituanErrorCode("9999", "美团库存同步入参商品集合为空,不执行同步"));
+//            rep.setError(new MeituanErrorCode("9999", "美团库存同步入参商品集合为空,不执行同步"));
             return rep;
         }
-        RetailSkuStockRequest retailSkuPriceRequest = new RetailSkuStockRequest();
+        MeituanStockRequest request = new MeituanStockRequest();
         List<FoodData> productParam = new ArrayList<FoodData>();
-        for (SyncMeituanEntity entity : entitys) {
+        for (MeituanStockEntry entity : stocks) {
             FoodData foodSave = new FoodData();
-            foodSave.setApp_food_code(entity.getThirdProCode());
+            foodSave.setApp_food_code(entity.getThirdSku());
             List<Skus> skus = new ArrayList<Skus>();
-            Skus fsku = new Skus(entity.getThirdProCode(), entity.getStock());
-            skus.add(fsku);
+            Skus sku = new Skus(entity.getThirdSku(), entity.getStock());
+            skus.add(sku);
             foodSave.setSkus(skus);
-            retailSkuPriceRequest.setApp_poi_code(entity.getStoreCode());
+            request.setApp_poi_code(entity.getStoreCode());
             productParam.add(foodSave);
         }
 
-        retailSkuPriceRequest.setFood_data_list(productParam);
+        request.setFood_data_list(productParam);
         //1.进入doCall方法
-        PlatformResult<MeituanResponse> result = this.doCall(new MeituanStockRequest());
+        PlatformResult<MeituanResponse> result = this.doCall(request);
         return null;
     }
 
@@ -52,4 +55,5 @@ public class MeituanStockService extends CallMethod<MeituanStockRequest, Meituan
     public CallPlatform<MeituanResponse> buildCallParams(MeituanStockRequest request) {
         return new CallSkuStock(request);
     }
+
 }
