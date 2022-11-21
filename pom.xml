@@ -41,7 +41,7 @@
         <mybatis-plus-start.version>3.4.0</mybatis-plus-start.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
         <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
-        <xxl-job.version>2.1.2</xxl-job.version>
+        <xxl-job.version>2.3.1</xxl-job.version>
         <email.version>1.4.4</email.version>
         <lang3.version>3.9</lang3.version>
         <collections4.version>4.4</collections4.version>
